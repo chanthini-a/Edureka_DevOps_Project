@@ -10,7 +10,7 @@ pipeline{
             steps{
                 git branch: 'main',
                 credentialsId: 'github',
-                url: 'https://github.com/kuntaldeb008/maven-war-project.git'
+                url: 'https://github.com/chanthini-a/Edureka_DevOps_Project.git'
             }
         }
         
@@ -22,17 +22,17 @@ pipeline{
         
         stage('Docker Build'){
             steps{
-                sh "docker build . -t kuntaldeb008/javaapp:${DOCKER_TAG} "
+                sh "docker build . -t chanthini-a/javaapp:${DOCKER_TAG} "
             }
         }
         
         stage('DockerHub Push'){
             steps{
                 withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
-                  sh "docker login -u kuntaldeb008 -p ${dockerHubPwd}"
+                  sh "docker login -u chanthini-a -p ${dockerHubPwd}"
                 }
                 
-                sh "docker push kuntaldeb008/javaapp:${DOCKER_TAG} "
+                sh "docker push chanthini-a/javaapp:${DOCKER_TAG} "
             }
         }
         
